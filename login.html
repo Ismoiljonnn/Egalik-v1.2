@@ -52,12 +52,13 @@ form.addEventListener("submit", async (e) => {
     const password = form.elements["password"].value;
 
     try {
-        const res = await fetch("https://egalik-api-v01.onrender.com/auth/login/", {
+                const res = await fetch("https://egalik-api-v01.onrender.com/auth/login/", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ username, password })
+            body: JSON.stringify({ username, password }),
+            credentials: "include"
         });
 
         if(res.ok){
@@ -79,3 +80,4 @@ form.addEventListener("submit", async (e) => {
 </script>
 </body>
 </html>
+
