@@ -277,39 +277,6 @@ form button {
 
 /* ===== RESPONSIVE FIXES ===== */
 
-/* Universal image fix */
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-/* ADS GRID — RESPONSIVE */
-.ads-grid {
-  display: grid !important;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 16px;
-  padding: 70px 12px 20px;
-}
-
-/* Ad card reset */
-.ad-card {
-  width: 100% !important;
-}
-
-/* CATEGORIES — RESPONSIVE */
-.categories {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 16px;
-  padding: 0 12px;
-}
-
-/* TEXT RESPONSIVE */
-body {
-  font-size: clamp(14px, 3vw, 16px);
-  line-height: 1.4;
-  letter-spacing: 0.5px;
-}
 
 /* TABLET */
 @media (max-width: 1024px) {
@@ -354,4 +321,5 @@ body {
     height: 90px;
   }
 }
+
 
