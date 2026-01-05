@@ -28,13 +28,13 @@ body {
   margin: 0;
 }
 
-
 .ads-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* har bir card 260px dan kichik bo‘lmaydi */
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); /* har bir card 260px dan kichik bo‘lmaydi */
   gap: 16px;
   padding: 70px 12px 20px;
 }
+
 
 .ads-grid {
   column-count: 3; /* nechta ustun bo‘lishini xohlaysiz */
@@ -49,6 +49,7 @@ body {
   transition: 0.2s;
   width: 100%; /* grid ichida har doim 100% kenglik */
 }
+
 
 
 .ads-grid {
@@ -281,45 +282,68 @@ form button {
 /* TABLET */
 @media (max-width: 1024px) {
   .ads-grid {
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .ad-card {
+    width: calc(25% - 1rem); /* 3 ustun */
+    margin-bottom: 1rem;
+    padding: 10px 10px 10px 10px;
+  }
+
+  .ad-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 12px;
+    cursor: pointer;
+    transition: 0.2s;
   }
 }
 
 /* MOBILE */
 @media (max-width: 768px) {
+
   .ads-grid {
-    padding-top: 80px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
   }
 
-  .ad-card h3 {
-    font-size: 1rem;
+  .ad-card {
+    width: calc(50% - 1rem); /* 3 ustun */
+    margin-bottom: 1rem;
   }
 
-  .ad-card p {
-    font-size: 0.85rem;
-  }
-
-  form {
-    width: 95%;
-    padding: 24px 18px;
-  }
+  .ad-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 12px;
+    cursor: pointer;
+    transition: 0.2s;
+  } 
 }
 
 /* SMALL MOBILE */
 @media (max-width: 480px) {
-  .ads-grid {
-    grid-template-columns: 1fr;
+   .ads-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
   }
 
-  .delete-btn {
-    font-size: 1rem;
-    padding: 10px 0;
+  .ad-card {
+    width: calc(100% - 1rem); /* 3 ustun */
+    margin-bottom: 1rem;
+    margin-left: 10px;
   }
 
-  .profile img {
-    width: 90px;
-    height: 90px;
-  }
-}
-
-
+  .ad-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 12px;
+    cursor: pointer;
+    transition: 0.2s;
+  } 
+} 
