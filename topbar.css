@@ -1,0 +1,78 @@
+.topbar {
+  position: fixed;
+  background-color: #0f1116;
+  top: 0;
+  z-index: 100;
+  width: 74%;
+  left: 250px;
+  padding: 0 0px;   /* ichki bo‘sh joy */
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+  background: rgba(15, 17, 22, 0.9); /* #0f1116 rang, 0.9 opacity */
+  backdrop-filter: blur(15px);
+
+  display: flex;
+  justify-content: center;
+  /* max-width: 1000px; */
+  margin-right: 10px;
+}
+
+.topbar input {
+  flex: 1;
+  min-height: 45px;
+  margin-right: 12px;
+  padding: 10px;
+  border-radius: var(--radius);
+  border: none;
+  background: var(--card);
+  color: var(--text);
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  z-index: 99;
+}
+
+.topbar input:focus {
+  outline: none;
+  box-shadow: 0 0 10px var(--blue, #3498db);
+  border-radius: 20px;
+}
+
+.search-btn {
+  padding: 15px 20px;
+  max-height: 45px;
+  border-radius: var(--radius);
+  border: none;
+  background: var(--card);
+  color: var(--bg);
+  background-color: var(--blue);
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: pointer;
+  z-index: 100;
+}
+
+/* ===== TOPBAR RESPONSIVE (Tablet & Mobile) ===== */
+@media (max-width: 1024px) {
+
+  .topbar {
+    left: 0;                  /* sidebar emas, chapdan boshlansin */
+    width: 100%;              /* full width */
+    padding: 0 10px;
+  }
+
+  .topbar input {
+    width: 100%;              /* input to‘liq cho‘zilsin */
+    height: 45px;
+    margin: 20px 15px 15px 15px;
+  }
+
+  /* Button yo‘q */
+  .search-btn {
+    display: none;
+  }
+}

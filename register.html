@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Register</title>
+<link rel="icon" type="image/png" href="images/Group 16.png">
+<link rel="stylesheet" href="register.css">
+<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="wrapper">
+    <form id="regForm" action="#">
+        <h1>Ro'yhatdan o'tish</h1>
+
+        <div class="input-box">
+            <input type="text" name="username" placeholder="Username" required>
+            <i class='bx bx-user'></i> 
+        </div>
+
+        <div class="input-box">
+            <input type="email" name="email" placeholder="Email (optional)">
+            <i class='bx bx-envelope'></i>
+        </div>
+
+        <div class="input-box">
+            <input type="password" name="password" placeholder="Password" required>
+            <i class='bx bx-lock'></i> 
+        </div>
+
+        <div class="input-box">
+            <input type="password" name="repeat" placeholder="Repeat Password" required>
+            <i class='bx bx-lock'></i> 
+        </div>
+
+        <!-- <div class="remember-forgot">
+            <label><input type="checkbox"> Remember me</label>
+        </div> -->
+
+        <button type="submit" id="regBtn" class="btn">ro'yhatdan o'tish</button>
+
+        <div class="register-link">
+            <p>You already have an account? <a href="login.html">Login</a></p>
+        </div>
+    </form>
+</div>
+
+<script>
+const API_BASE = "https://egalik-api-v01.onrender.com/"; // server URL
+
+const form = document.getElementById("regForm");
+const btn = document.getElementById("regBtn");
+btn.disabled = true;
+
+// Tugmani faqat form valid bo'lsa faollashtirish
+form.addEventListener("input", () => {
+    btn.disabled = !form.checkValidity();
+});
+
+// Form submit
+form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    // Form ma'lumotlarini olish
+    const formData = Object.fromEntries(new FormData(form).entries());
+
+    // Frontend password tekshiruvi
+    if(formData.password !== formData.repeat){
+        alert("Parollar mos kelmadi!");
+        return;
+    }
+
+    try {
+        // Backendga POST request
+        const res = await fetch(API_BASE + "auth/register/", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({
+                username: formData.username,
+                email: formData.email || "",
+                password: formData.password,
+                password2: formData.repeat
+            })
+        });
+
+        if(res.ok){
+            alert("Ro‘yxatdan o‘tish muvaffaqiyatli! Endi login qiling.");
+            window.location.href = "login.html";
+        } else {
+            const err = await res.json();
+            if(err.password2){
+                alert("Xato: " + err.password2.join(", "));
+            } else if(err.username){
+                alert("Xato: " + err.username.join(", "));
+            } else {
+                alert("Xato: " + JSON.stringify(err));
+            }
+        }
+    } catch(err){
+        console.error(err);
+        alert("Server bilan bog‘lanishda xato");
+    }
+});
+</script>
+</body>
+</html>

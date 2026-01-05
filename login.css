@@ -1,0 +1,196 @@
+@import url(https://fonts.googleapis.com/css2?familiy=Poppins:wght@300;400;500;600;700;800;900;&display=swap);
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #0f1116;
+}
+
+.wrapper {
+    width: 420px;
+    background: #151922;
+    border: 2px solid rgba(255, 255, 255, .2);
+    backdrop-filter: blur();
+    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+    color: #fff;
+    border-radius: 10px;
+    padding: 30px 40px;
+}
+
+.wrapper h1 {
+    font-size: 36px;
+    text-align: center;
+}
+
+.wrapper .input-box {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 30px 0;
+}
+
+.input-box input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid rgba(255, 255, 255, .2);
+    border-radius: 40px;
+    font-size: 16px;
+    color: #fff;
+    padding: 20px 45px 20px 20px;
+}
+
+.input-box input::placeholder {
+    color: #fff;
+}
+
+.input-box i {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+}
+
+.wrapper .remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14.5px;
+    margin: -15px 0 15px;
+}
+
+.remember-forgot label input {
+    accent-color: #fff;
+    margin-right: 3px;
+}
+
+.remember-forgot a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.remember-forgot a:hover {
+    text-decoration: underline;
+}
+
+.wrapper .btn {
+    width: 100%;
+    height: 45px;
+    background: #3b82f6;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #151922;
+    font-weight: 500;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.wrapper .register-link {
+    font-size: 14.5px;
+    text-align: center;
+    margin: 20px 0 15px;
+}
+
+.register-link p a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.register-link p a:hover {
+    text-decoration: underline;
+}
+
+/* ===== LOGIN RESPONSIVE ===== */
+@media (max-width: 768px) {
+    body {
+        padding: 20px; /* kichik ekranlarda chetga bo‘sh joy qo‘shildi */
+    }
+
+    .wrapper {
+        width: 100%;          /* full width */
+        max-width: 400px;     /* maksimal kenglik cheklovi */
+        padding: 20px;        /* paddingni tor ekranga moslash */
+    }
+
+    .wrapper h1 {
+        font-size: 28px;      /* kichikroq sarlavha */
+    }
+
+    .input-box input {
+        padding: 15px 40px 15px 15px; /* kichik ekran uchun padding qisqardi */
+        font-size: 14px;      /* kichikroq matn */
+    }
+
+    .input-box i {
+        font-size: 18px;
+        right: 15px;
+    }
+
+    .remember-forgot {
+        flex-direction: column; /* checkbox va link pastga tushadi */
+        align-items: flex-start;
+        gap: 10px;
+        margin: 0 0 15px;
+    }
+
+    .wrapper .btn {
+        height: 45px;           /* balandlik saqlanadi */
+        font-size: 15px;        /* kichikroq matn */
+    }
+
+    .wrapper .register-link {
+        font-size: 14px;
+    }
+}
+
+/* Hattoki telefonlar uchun */
+@media (max-width: 480px) {
+    .wrapper {
+        padding: 15px;
+    }
+
+    .wrapper h1 {
+        font-size: 24px;
+    }
+
+    .input-box input {
+        font-size: 13px;
+        padding: 12px 35px 12px 12px;
+    }
+
+    .input-box i {
+        font-size: 16px;
+        right: 12px;
+    }
+
+    .remember-forgot {
+        font-size: 13px;
+    }
+
+    .wrapper .btn {
+        font-size: 14px;
+    }
+
+    .wrapper .register-link {
+        font-size: 13px;
+    }
+}
