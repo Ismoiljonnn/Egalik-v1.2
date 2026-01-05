@@ -76,12 +76,13 @@ form.addEventListener("submit", async (e) => {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({
-                username: formData.username,
-                email: formData.email || "",
-                password: formData.password,
-                password2: formData.repeat
-            })
-        });
+            username: formData.username,
+            email: formData.email || "",
+            password: formData.password,
+            password2: formData.repeat
+        }),
+        credentials: "include"
+    });
 
         if(res.ok){
             alert("Ro‘yxatdan o‘tish muvaffaqiyatli! Endi login qiling.");
@@ -104,3 +105,4 @@ form.addEventListener("submit", async (e) => {
 </script>
 </body>
 </html>
+
