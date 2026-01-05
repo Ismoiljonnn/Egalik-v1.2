@@ -30,10 +30,10 @@ body {
 
 
 .ads-grid {
-  padding-top: 67px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* har bir card 260px dan kichik bo‘lmaydi */
   gap: 16px;
+  padding: 70px 12px 20px;
 }
 
 .ads-grid {
@@ -42,9 +42,12 @@ body {
 }
 
 .ad-card {
-  display: inline-block; /* kerak column-count uchun */
-  width: 100%; /* ustun kengligi to‘liq bo‘lsin */
-  margin-bottom: 1rem;
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 12px;
+  cursor: pointer;
+  transition: 0.2s;
+  width: 100%; /* grid ichida har doim 100% kenglik */
 }
 
 
@@ -351,3 +354,4 @@ body {
     height: 90px;
   }
 }
+
