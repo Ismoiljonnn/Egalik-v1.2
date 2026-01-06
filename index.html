@@ -53,6 +53,9 @@
     </div>
   </nav>
   <div class="logout-btn-container">
+    <button id="loginBtn" class="loginBtn">
+      Kirish
+    </button>
     <button id="logoutBtn" class="logoutBtn">
       Chiqish
     </button>
@@ -135,94 +138,27 @@
 </main>
 
     <script>
-//         const API_BASE = "https://egalik-api-v01.onrender.com/";
+        const API_BASE = "https://egalik-api-v01.onrender.com/";
 
-//       document.addEventListener("DOMContentLoaded", async () => {
-//     try {
-//         // Foydalanuvchi sessiyasini tekshirish uchun minimal endpoint chaqirish
-//         const res = await fetch(API_BASE + "mening_elonlarim/", {
-//             method: "GET",
-//             credentials: "include" // cookie yuboradi
-//         });
-
-//         if (res.status === 401) { // login qilmagan bo‘lsa
-//             window.location.href = "login.html";
-//         } else {
-//             // foydalanuvchi login qilgan bo‘lsa, sahifani yuklaymiz
-//             loadProducts(); 
-//         }
-//     } catch (err) {
-//         console.error("Server bilan bog‘lanishda xato:", err);
-//         alert("Server bilan bog‘lanishda xato");
-//     }
-// });
-
-      const API_BASE = "https://egalik-api-v01.onrender.com/";
-
-document.addEventListener("DOMContentLoaded", async () => {
-    const msg = document.getElementById("msg"); // #msg div HTMLda bo‘lishi kerak
-    msg.innerHTML = ""; // eski xabarlarni tozalash
-
+      document.addEventListener("DOMContentLoaded", async () => {
     try {
+        // Foydalanuvchi sessiyasini tekshirish uchun minimal endpoint chaqirish
         const res = await fetch(API_BASE + "mening_elonlarim/", {
             method: "GET",
-            credentials: "include"
+            credentials: "include" // cookie yuboradi
         });
 
-        if (res.status === 401) {
-            // Login qilmagan bo‘lsa #msg ichida login formini chiqaramiz
-            msg.innerHTML = `
-                <h3>Login qilishingiz kerak</h3>
-                <form id="loginFormMsg">
-                    <input type="text" name="username" placeholder="Username" required>
-                    <input type="password" name="password" placeholder="Password" required>
-                    <button type="submit">Login</button>
-                </form>
-            `;
-            msg.style.display = "block";
-
-            const loginFormMsg = document.getElementById("loginFormMsg");
-            loginFormMsg.addEventListener("submit", async (e) => {
-                e.preventDefault();
-                const formData = Object.fromEntries(new FormData(loginFormMsg).entries());
-
-                try {
-                    const loginRes = await fetch(API_BASE + "auth/login/", {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({
-                            username: formData.username,
-                            password: formData.password
-                        }),
-                        credentials: "include"
-                    });
-
-                    if(loginRes.ok){
-                        alert("Login muvaffaqiyatli ✅");
-                        window.location.reload(); // sahifani yangilash
-                    } else {
-                        const err = await loginRes.json().catch(() => null);
-                        alert("Login xato: " + (err ? JSON.stringify(err) : "Server javobi xato"));
-                    }
-                } catch(err) {
-                    console.error(err);
-                    alert("Server bilan bog‘lanishda xato");
-                }
-            });
-
+        if (res.status === 401) { // login qilmagan bo‘lsa
+            window.location.href = "login.html";
         } else {
-            // Login bo‘lgan foydalanuvchi
-            msg.style.display = "none";
-            loadProducts();
+            // foydalanuvchi login qilgan bo‘lsa, sahifani yuklaymiz
+            loadProducts(); 
         }
-
     } catch (err) {
         console.error("Server bilan bog‘lanishda xato:", err);
-        msg.textContent = "Server bilan bog‘lanishda xato";
-        msg.style.display = "block";
+        alert("Server bilan bog‘lanishda xato");
     }
-});
-              
+});           
 
         // Navbar switching
         document.querySelectorAll(".sidebar nav a").forEach(link => {
@@ -614,8 +550,38 @@ document.getElementById("logoutBtn").addEventListener("click", async () => {
 });
 
 
+      const loginBtn = document.getElementById("loginBtn");
+    const logoutBtn = document.getElementById("logoutBtn");
+
+    document.addEventListener("DOMContentLoaded", async () => {
+        try {
+            const res = await fetch(API_BASE + "mening_elonlarim/", {
+                method: "GET",
+                credentials: "include"
+            });
+
+            if (res.status === 401) {
+                // login qilmagan
+                loginBtn.style.display = "block";
+                logoutBtn.style.display = "none";
+            } else {
+                // login qilgan
+                loginBtn.style.display = "none";
+                logoutBtn.style.display = "block";
+            }
+        } catch (err) {
+            console.error(err);
+            // serverga ulanmasa ham xavfsiz holat
+            loginBtn.style.display = "block";
+            logoutBtn.style.display = "none";
+        }
+    });
+
+
+
     </script>
 
 </body>
 </html>
+
 
