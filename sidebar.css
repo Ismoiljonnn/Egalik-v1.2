@@ -106,6 +106,17 @@
   cursor:pointer
 }
 
+.loginBtn {
+  margin-top: 10px;
+  width:100%; 
+  padding:10px; 
+  background:#803ce7; 
+  color:#fff; 
+  border:none; 
+  border-radius:5px; 
+  cursor:pointer
+}
+
 .logout-btn-container {
   margin-top:auto; 
   padding: 10px;
@@ -188,3 +199,4 @@
     padding-bottom: 70px; /* pastdagi sidebar joyi */
   }
 }
+
