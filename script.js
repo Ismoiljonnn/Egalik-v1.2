@@ -135,7 +135,7 @@
     : "images/noimage.jpg";
 
   return `
-   <article class="ad-card">
+    <article class="ad-card">
               <img src="${item.rasm}" alt="${item.title}">
               <h3>${item.title}</h3>
               <p>Tavsilot: ${item.tavsilot}</p>
@@ -413,4 +413,3 @@ document.addEventListener("click", async (e) => {
     }
   }
 });
-
