@@ -12,6 +12,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 body {
     font-family: 'Montserrat', sans-serif;
 font-weight: 500; /* semi-bold, boldga yaqin */
@@ -28,11 +29,14 @@ body {
   margin: 0;
 }
 
+
+
 .ads-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); /* har bir card 260px dan kichik bo‘lmaydi */
   gap: 16px;
-  padding: 70px 12px 20px;
+  padding-top: 25px;
+  /* padding: 25px 12px 20px; */
 }
 
 
@@ -50,7 +54,10 @@ body {
   width: 100%; /* grid ichida har doim 100% kenglik */
 }
 
-
+.content {
+  margin-left: 250px; /* sidebar kengligi */
+  padding: 20px;
+}
 
 .ads-grid {
   display: flex;
@@ -84,6 +91,7 @@ body {
 }
 
 .badge {
+  display: block;
   border: none;
   padding: 6px 10px;
   border-radius: var(--radius);
@@ -92,40 +100,20 @@ body {
   margin-top: 5px;
 }
 
-.edit-btn {
-  border: none;
-  padding: 6px 10px;
-  border-radius: var(--radius);
-  font-size: 0.8rem;
-  color: white;
-  background-color: var(--muted);
-  cursor: pointer;
-}
-
-.delete-btn {
-  border: none;
-  padding: 10px 30px;
-
-  border-radius: var(--radius);
-  font-size: 0.8rem;
-  color: white;
-  background-color: red;
-  cursor: pointer;
-}
-
 /* O'chirish tugmasi uchun */
 .delete-btn {
   display: block;
   width: 95%;
+  margin-left: 5px;
   margin: 15px auto 0; /* pastga va o‘rtaga */
   padding: 12px 0;
-  font-size: 1.1rem;
+  font-size: 1rem;
   background-color: #e74c3c;
   color: #fff;
   border: none;
-  border-radius: 8px;
   cursor: pointer;
   transition: 0.3s;
+  border-radius: var(--radius);
 }
 
 .delete-btn:hover {
@@ -251,9 +239,8 @@ form button {
   border-radius: 50%;
   margin-bottom: 20px;
 }
-.edit-profile {
-  display: block;
-}
+
+
 .profile button {
   display: inline-block;
   margin-top: 10px;
@@ -271,6 +258,7 @@ form button {
   flex-direction: column;
   gap: 5px;
 }
+
 .profile .menu button {
   background: var(--card);
   padding: 20px;
@@ -321,7 +309,7 @@ form button {
   .ad-card {
     background: var(--card);
     border-radius: var(--radius);
-    padding: 12px;
+    /* padding: 12px; */
     cursor: pointer;
     transition: 0.2s;
   } 
@@ -361,18 +349,3 @@ form button {
     grid-template-columns: 1fr;
   }
 }
-
-
-#msg {
-  position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #22c55e;
-  color: white;
-  padding: 12px 20px;
-  border-radius: 10px;
-  z-index: 9999;
-  font-size: 16px;
-}
-
