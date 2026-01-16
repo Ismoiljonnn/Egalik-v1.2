@@ -135,20 +135,22 @@
     : "images/noimage.jpg";
 
   return `
-    <article class="ad-card" data-id="${item.id}">
-      <img src="${imgSrc}" alt="${item.title}">
-      <h3>${item.title}</h3>
-      <p>Tavsilot: ${item.tavsilot}</p>
-      <p>Narxi: ${item.narx} so'm</p>
-      <p>Telefon raqam: ${item.number}</p>
-      <p>Telegram: ${item.telegram}</p>
-      <div class="ad-actions">
-        <button class="badge ${btnClass}">${item.holat}</button>
-        ${isMyAd ? `
-        <button class="delete-btn" data-id="${item.id}">O‘chirish</button>
-        ` : ""}
-      </div>
-    </article>
+   <article class="ad-card">
+              <img src="${item.rasm}" alt="${item.title}">
+              <h3>${item.title}</h3>
+              <p>Tavsilot: ${item.tavsilot}</p>
+              <p>Narxi: ${item.narx} so'm</p>
+              <p>Telefon raqam: ${item.number}</p>
+              <p>Telegram: ${item.telegram}</p>
+              <div class="ad-actions">
+                <button class="badge ${btnClass}">
+                  ${item.holat}
+                </button>
+              </div>
+              <button class="delete-btn" data-id="${item.id}">
+                O‘chirish
+                </button>
+            </article>
   `;
 }
           const searchInput = document.getElementById("searchInput");
@@ -411,3 +413,4 @@ document.addEventListener("click", async (e) => {
     }
   }
 });
+
