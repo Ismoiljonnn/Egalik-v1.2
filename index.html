@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="main.css">
 <link rel="stylesheet" href="sidebar.css">
 <link rel="stylesheet" href="topbar.css">
-<link rel="stylesheet" href="swiper.css">
+<link rel="stylesheet" href="carousel.css">
 </head>
 <body>
 
@@ -69,6 +69,41 @@
     <input type="text" id="searchInput" placeholder="Nimalar qidiryapsiz?">
     <button type="submit" id="searchBtn" class="search-btn">Qidirish</button>
   </header>
+  
+
+        <!-- Carousel -->
+    <section class="carousel-wrap" id="carousel">
+    <div class="slides" id="slides">
+      <!-- Har bir .slide ichiga rasm qo‘yiladi. Hozircha siyoh placeholder bor. -->
+      <div class="slide">
+      <div class="placeholder">Rasm 1</div>
+      </div>
+      <div class="slide">
+      <div class="placeholder">Rasm 2</div>
+      </div>
+      <div class="slide">
+      <div class="placeholder">Rasm 3</div>
+      </div>
+      <div class="slide">
+      <div class="placeholder">Rasm 4</div>
+      </div>
+    </div>
+
+
+    <!-- Chap va o'ng strelkalar -->
+    <button class="arrow left" aria-label="Oldinga" id="prevBtn">
+    <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true"><path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path></svg>
+    </button>
+
+
+    <button class="arrow right" aria-label="Orqaga" id="nextBtn">
+    <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true"><path d="M8.59 16.59 13.17 12 8.59 7.41 10 6l6 6-6 6z"></path></svg>
+    </button>
+
+
+    <!-- Dots -->
+    <div class="dots" id="dots"></div>
+    </section>
 
   <div class="ads-grid">
     
@@ -143,6 +178,3 @@
 
 </body>
 </html>
-
-
-
