@@ -3,14 +3,12 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <link rel="icon" type="image/png" href="Group 16.png">
+  <link rel="icon" type="image/png" href="images/Group 16.png">
   <title>Egalik — Welcome</title>
   <meta name="description" content="Egalik - istalgan narsangizni ijaraga oling yoki bering." />
   <style>
     /* Reset + base */
     :root{
-      --bg:#0f1724; /* deep navy */
-      --card:#0b1220;
       --muted:#9aa4b2;
       --accent1:#7c3aed; /* violet */
       --accent2:#06b6d4; /* cyan */
@@ -20,6 +18,10 @@
       --fw-strong:700;
       --fw-medium:500;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      --bg: #0f1116;
+      --card: #1a1e27;
+      --text: #f1f5f9;
+      --radius: 12px;
     }
     *{box-sizing:border-box}
     html,body{height:100%}
@@ -67,7 +69,7 @@
     .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
     .btn-ghost a{background:transparent;color:var(--muted); text-decoration: none;}
 
-     .hero-card{
+    .hero-card{
       position: relative;
       transition: transform 0.25s cubic-bezier(.22,.61,.36,1), box-shadow 0.25s ease;
       will-change: transform;
@@ -108,6 +110,8 @@
       box-shadow: 0 6px 20px rgba(124,58,237,0.25);
     }
 
+
+
     /* Quick stats */
     .stats{display:flex;gap:12px;margin-top:22px}
     .stat{background:var(--card);padding:12px;border-radius:12px;min-width:110px}
@@ -123,7 +127,7 @@
       min-height:320px;   /* height emas */
       height:auto;        /* muhim */
       border-radius:18px;
-      background:linear-gradient(180deg,#071026 0%, #0e1a2a 100%);
+      background: #0f1116;
       padding:18px;
       box-shadow:inset 0 1px rgba(255,255,255,0.02),0 14px 60px rgba(2,6,23,0.6);
       display:flex;
@@ -136,7 +140,7 @@
       overflow:visible;
     }
 
-     .device {
+    .device {
       perspective: 1200px;
     }
 
@@ -146,11 +150,7 @@
       gap: 14px;
       padding: 14px 16px;
       border-radius: 14px;
-      background: linear-gradient(
-        180deg,
-        rgba(255,255,255,0.04),
-        rgba(255,255,255,0.02)
-      );
+      background: #0f1116;
       border: 1px solid rgba(255,255,255,0.06);
       margin-bottom: 10px;
 
@@ -170,7 +170,7 @@
         rgba(124,58,237,0.12),
         rgba(255,255,255,0.03)
       );
-      border-color: rgba(124,58,237,0.35);
+      border-color: rgba(50, 20, 101, 0.35);
       box-shadow:
         0 10px 30px rgba(124,58,237,0.25),
         inset 0 0 0 1px rgba(255,255,255,0.05);
@@ -201,37 +201,38 @@
       color: var(--muted);
     }
 
-        .list-item {
-      position: relative;
-      overflow: hidden;
-    }
+      .list-item {
+    position: relative;
+    overflow: hidden;
+  }
 
-    .list-item::before {
-      content: "";
-      position: absolute;
-      inset: -1px;
-      background: radial-gradient(
-        220px circle at var(--x, 50%) var(--y, 50%),
-        rgba(124,58,237,0.22),
-        transparent 60%
-      );
-      opacity: 0.9;
-      transition: opacity 0.25s ease;
-      pointer-events: none;
-    }
+  .list-item::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    /* background: radial-gradient(
+      220px circle at var(--x, 50%) var(--y, 50%),
+      rgba(124,58,237,0.22),
+      transparent 60%
+    ); */
+    opacity: 0.9;
+    transition: opacity 0.25s ease;
+    pointer-events: none;
+  }
 
-    .cursor-glow {
-      position: fixed;
-      top:0;
-      left:0;
-      width: 270px;
-      height: 270px;
-      pointer-events: none;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(124,58,237,0.35) 0%, transparent 60%);
-      transform: translate(-50%, -50%);
-      transition: width 0.15s ease, height 0.15s ease;
-    }
+  .cursor-glow {
+    position: fixed;
+    top:0;
+    left:0;
+    width: 270px;
+    height: 270px;
+    pointer-events: none;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(124,58,237,0.35) 0%, transparent 60%);
+    transform: translate(-50%, -50%);
+    transition: width 0.15s ease, height 0.15s ease;
+  }
+
 
     .list-item{display:flex;align-items:center;gap:10px;padding:8px;border-radius:10px;margin-bottom:8px}
     .dot{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent2),var(--accent1));display:flex;align-items:center;justify-content:center;font-weight:700}
@@ -244,6 +245,50 @@
     .feature{background:var(--glass-2);padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)}
     .feature h4{margin:0 0 6px}
     .feature p{margin:0;color:var(--muted);font-size:13px}
+
+    /* .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .feature {
+      position: relative;
+      padding: 20px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border: 1px solid rgba(124,58,237,0.15);
+      box-shadow: 0 12px 30px rgba(124,58,237,0.1);
+      transition: box-shadow 0.3s ease, transform 0.2s ease;
+      overflow: hidden;
+    }
+
+    /* internal glow layer */
+    /* .feature::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 18px;
+      pointer-events: none;
+      background: radial-gradient(circle at 50% 50%, rgba(124,58,237,0.25) 0%, transparent 70%);
+      transition: background-position 0.1s ease;
+    } */
+
+    /* hover effekt */
+    /* .feature:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(124,58,237,0.25);
+    }
+
+    .feature::before {
+    background: radial-gradient(
+      180px circle at var(--glow-x, 50%) var(--glow-y, 50%),
+      rgba(124,58,237,0.25),
+      transparent 70%
+    );
+  } */
+
 
     footer{margin-top:36px;color:var(--muted);font-size:13px;display:flex;justify-content:space-between;align-items:center; padding-bottom: 40px;}
 
@@ -270,7 +315,7 @@
     <header>
       <div class="brand">
         <div class="logo" aria-hidden>
-          <img src="Group 16.png" alt="">
+          <img src="images/Group 16.png" alt="">
         </div>
         <div>
           <h1>Egalik</h1>
@@ -361,7 +406,7 @@
           </div>
 
           <div class="list-item">
-            <div class="dot">5</div>
+            <div class="dot">6</div>
             <div class="meta"><b>Yer maydonlari</b><span>Yer maydonlari turkumidagi barcha e'lonlar</span></div>
             <div style="font-size:13px;color:var(--muted)">0</div>
           </div>
@@ -372,9 +417,17 @@
 
     <section id="features" class="features">
       <div class="feature">
-        <h4>Oson ro'yxatdan o'tish</h4>
+        <h4>Oson onboarding</h4>
         <p>1 daqiqa ichida hisob yarating. Minimal ma'lumot — maksimal tezlik.</p>
       </div>
+      <!-- <div class="feature">
+        <h4>Avtomatlashtirilgan billing</h4>
+        <p>Ijara to‘lovlarini kuzatish va eslatmalar — qo‘l mehnatisiz.</p>
+      </div> -->
+      <!-- <div class="feature">
+        <h4>Markaziy dashboard</h4>
+        <p>Barcha mulk ma'lumotlari va reklama idarasi bitta oynada.</p>
+      </div> -->
       <div class="feature">
         <h4>Mobil uchun optimallashtirilgan</h4>
         <p>Platforma mobilda ham tez ishlaydi.</p>
@@ -383,11 +436,15 @@
         <h4>E'lonlar</h4>
         <p>Istalgan narsangizni ijaraga oling yoki bering.</p>
       </div>
+      <!-- <div class="feature">
+        <h4>Xavfsizlik</h4>
+        <p>JWT autentifikatsiya va rolga asoslangan ruxsatlar.</p>
+      </div> -->
     </section>
 
     <footer>
       <div>© <strong>Egalik</strong> 2026</div>
-      <div>Made with &nbsp;•&nbsp; Egalik • Startup </div>
+      <div>Made with &nbsp;•&nbsp; Fast onboarding • Clean UI • Reliable</div>
     </footer>
 
   </div>
@@ -425,7 +482,9 @@
     //   b.addEventListener('keyup', (e)=>{ if(e.key === 'Enter') b.click(); });
 
     
-        const card = document.querySelector('.hero-card');
+    // });
+
+    const card = document.querySelector('.hero-card');
 
     card.addEventListener('mousemove', (e) => {
       const rect = card.getBoundingClientRect();
@@ -453,16 +512,14 @@
     card.addEventListener('mouseleave', () => {
       card.style.transform = 'translate(0,0) rotateX(0) rotateY(0)';
     });
-    // });
-
     
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = 'translate(0,0) rotateX(0) rotateY(0)';
-    });
 
 
     document.querySelectorAll(".list-item").forEach(card => {
+
       card.addEventListener("mousemove", e => {
+
+        
         const rect = card.getBoundingClientRect();
         const x = e.clientX - rect.left - rect.width / 2;
         const y = e.clientY - rect.top - rect.height / 2;
@@ -484,17 +541,17 @@
     });
 
 
-    
-      const glow = document.createElement('div');
-  glow.classList.add('cursor-glow');
-  document.body.appendChild(glow);
+          const glow = document.createElement('div');
+      glow.classList.add('cursor-glow');
+      document.body.appendChild(glow);
 
-  document.addEventListener('mousemove', e => {
-    glow.style.left = e.clientX + 'px';
-    glow.style.top = e.clientY + 'px';
-  });
+      document.addEventListener('mousemove', e => {
+        glow.style.left = e.clientX + 'px';
+        glow.style.top = e.clientY + 'px';
+      });
 
 
+  
   </script>
 </body>
 </html>
