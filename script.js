@@ -123,17 +123,6 @@
         });
         
 
-      function createAdCard(item, isMyAd = false) {
-  const btnClass = item.holat === "sotiladi" ? "green" : "blue";
-
-  const BASE_URL = "https://egalik-api-v01.onrender.com";
-
-  const imgSrc = item.rasm
-    ? (item.rasm.startsWith("http")
-        ? item.rasm
-        : `${BASE_URL}${item.rasm}`)
-    : "images/noimage.jpg";
-
 function createAdCard(item, isMyAd = false) {
   const btnClass = item.holat === "sotiladi" ? "green" : "blue";
 
@@ -160,6 +149,7 @@ function createAdCard(item, isMyAd = false) {
     </article>
   `;
 }
+
           const searchInput = document.getElementById("searchInput");
       const searchBtn = document.getElementById("searchBtn");
 
@@ -412,7 +402,7 @@ document.addEventListener("click", async (e) => {
 
       // Tugmalarni boshqarish
       addBtn.style.display = "none";  // Yangi e’lon tugmasi yashirilsin
-      editBtn.style.display = "inline-block"; // Yangilash tugmasi ko‘rsin
+      // editBtn.style.display = "inline-block"; // Yangilash tugmasi ko‘rsin
 
     } catch (err) {
       console.error(err);
@@ -420,4 +410,3 @@ document.addEventListener("click", async (e) => {
     }
   }
 });
-
