@@ -133,7 +133,7 @@ background-color: #c0392b;
 /* Categories page */
 .categories {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  grid-template-columns: repeat(4, 1fr); /* har qatorda maksimal 4 ta */
   gap: 14px;
   margin-top: 65px;
   padding: 10px;
@@ -148,6 +148,26 @@ background-color: #c0392b;
   transition: 0.15s;
 }
 .category-card:hover { background: #222633; }
+
+/* Responsive: kichik ekranlarda 2-3 ta bo‘lsin */
+@media (max-width:1024px){
+  .categories {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width:768px){
+  .categories {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width:480px){
+  .categories {
+    grid-template-columns: 1fr;
+  }
+}
+
 
 
 /* Add form */
