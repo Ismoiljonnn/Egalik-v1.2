@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="uz">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link type="image" href="images/Group 16.png">
+  <title>Egalik — Welcome</title>
+  <meta name="description" content="Egalik — ijara va sotish, soddalashtirilgan boshqaruv platformasi." />
+  <style>
+    /* Reset + base */
+    :root{
+      --bg:#0f1724; /* deep navy */
+      --card:#0b1220;
+      --muted:#9aa4b2;
+      --accent1:#7c3aed; /* violet */
+      --accent2:#06b6d4; /* cyan */
+      --glass: rgba(255,255,255,0.04);
+      --glass-2: rgba(255,255,255,0.02);
+      --radius:16px;
+      --fw-strong:700;
+      --fw-medium:500;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background: radial-gradient(1200px 600px at 10% 10%, /* rgba(124,58,237,0.12), */ transparent),
+                  linear-gradient(180deg, /* rgba(6,182,212,0.03), */ transparent 30%),
+                  var(--bg);
+      color:#e6eef6;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.4;
+      padding:32px;
+    }
+
+    /* Layout */
+    .container{max-width:1100px;margin:0 auto}
+    header{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px}
+    .brand{display:flex;gap:14px;align-items:center}
+    .logo{
+      width:56px;height:56px;border-radius:12px;
+      background:linear-gradient(135deg,var(--accent1),var(--accent2));
+      display:flex;align-items:center;justify-content:center;font-weight:800;color:white;font-size:22px;box-shadow:0 6px 24px rgba(7,10,22,0.6);
+    }
+    .logo img {
+      height: 58px;
+      width: auto;
+    }
+    .brand h1{margin:0;font-size:18px}
+    .brand p{margin:0;font-size:12px;color:var(--muted)}
+    nav{display:flex;gap:10px;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:10px;font-size:14px}
+    nav a.primary{background:linear-gradient(90deg, rgba(124,58,237,0.12), rgba(6,182,212,0.08));color:var(--accent1);border:1px solid rgba(124,58,237,0.12)}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center}
+    .hero-card{background:linear-gradient(180deg,var(--glass),transparent);border-radius:var(--radius);padding:34px;backdrop-filter:blur(6px);box-shadow:0 8px 30px rgba(2,6,23,0.6); z-index: 100;}
+    .tag{display:inline-block;padding:8px 12px;border-radius:999px;background:linear-gradient(90deg,rgba(124,58,237,0.12),rgba(6,182,212,0.06));color:var(--accent2);font-weight:600;font-size:13px;margin-bottom:18px}
+    h2{font-size:34px;margin:0 0 12px 0;line-height:1.05}
+    p.lead{color:var(--muted);margin:0 0 22px}
+    .ctas{display:flex;gap:12px}
+    .btn{padding:12px 18px;border-radius:12px;border:0;font-weight:600;cursor:pointer}
+    .btn-cta{background:linear-gradient(90deg,var(--accent1),var(--accent2));color:white;box-shadow:0 8px 24px rgba(6,182,212,0.08)}
+    .btn-cta a{color:white; text-decoration: none;}
+    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+    .btn-ghost a{background:transparent;color:var(--muted); text-decoration: none;}
+
+    /* Quick stats */
+    .stats{display:flex;gap:12px;margin-top:22px}
+    .stat{background:var(--card);padding:12px;border-radius:12px;min-width:110px}
+    .stat b{display:block;font-size:18px}
+    .stat span{color:var(--muted);font-size:13px}
+
+    /* Mock device */
+    .device{width:420px;height:320px;border-radius:18px;background:linear-gradient(180deg,#071026 0%, #0e1a2a 100%);padding:18px;box-shadow:inset 0 1px rgba(255,255,255,0.02),0 14px 60px rgba(2,6,23,0.6);display:flex;flex-direction:column}
+    .device .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+    .device .screen{border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:12px;}
+    .device{
+      width:420px;
+      min-height:320px;   /* height emas */
+      height:auto;        /* muhim */
+      border-radius:18px;
+      background:linear-gradient(180deg,#071026 0%, #0e1a2a 100%);
+      padding:18px;
+      box-shadow:inset 0 1px rgba(255,255,255,0.02),0 14px 60px rgba(2,6,23,0.6);
+      display:flex;
+      flex-direction:column;
+    }
+
+    .device .screen{
+      flex:unset;
+      height:auto;
+      overflow:visible;
+    }
+    .list-item{display:flex;align-items:center;gap:10px;padding:8px;border-radius:10px;margin-bottom:8px}
+    .dot{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent2),var(--accent1));display:flex;align-items:center;justify-content:center;font-weight:700}
+    .meta{flex:1}
+    .meta b{display:block}
+    .meta span{font-size:13px;color:var(--muted)}
+
+    /* Features */
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:24px}
+    .feature{background:var(--glass-2);padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)}
+    .feature h4{margin:0 0 6px}
+    .feature p{margin:0;color:var(--muted);font-size:13px}
+
+    footer{margin-top:36px;color:var(--muted);font-size:13px;display:flex;justify-content:space-between;align-items:center; padding-bottom: 40px;}
+
+    /* Responsive */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr}
+      .device{order: -1;width:100%;height:220px}
+      .features{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:560px){
+      body{padding:18px}
+      h2{font-size:26px}
+      .features{grid-template-columns:1fr}
+    }
+
+    /* Subtle animations */
+    @keyframes floaty {0%{transform:translateY(0)}50%{transform:translateY(-6px)}100%{transform:translateY(0)}}
+    .logo{animation:floaty 6s ease-in-out infinite}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden>
+          <img src="images/Group 16.png" alt="">
+        </div>
+        <div>
+          <h1>Egalik</h1>
+          <p>Egalik orqali ijaraga bering yoki oling</p>
+        </div>
+      </div>
+      <nav>
+        <!-- <a href="#features">Xususiyatlar</a> -->
+        <a href="https://t.me/EGALIKuz">Telegram kanal</a>
+        <a class="primary" href="login.html">Kirish</a>
+        <a class="primary" href="register.html">Ro‘yxatdan o‘tish</a>
+      </nav>
+    </header>
+
+    <main class="hero">
+      <section class="hero-card">
+        <span class="tag">Beta · MVP</span>
+        <h2>Qulay, Tez va ishonchli.</h2>
+        <p class="lead">Egalik bilan istalgan narsani ijaraga oling yoki istalgan narsani ijaraga bering. Minimal interfeys, maksimal natija.</p>
+
+        <div class="ctas">
+          <button class="btn btn-cta" id="start">
+            <a href="register.html">Ro'yxatdan o'tish</a>
+          </button>
+          <button class="btn btn-cta" id="start">
+            <a href="login.html">Kirish</a>
+          </button>
+          <button class="btn btn-ghost" id="tour">
+            <a href="https://t.me/EGALIKuz">Telegram kanal</a>
+          </button>
+        </div>
+
+        <div class="stats" role="list">
+          <div class="stat"><b>10+</b><span>Ro‘yxatdan o‘tgan mijoz</span></div>
+          <div class="stat"><b>4.9</b><span>O‘rtacha baho</span></div>
+          <div class="stat"><b>1 daq</b><span>Ro'yhatdan o'tish</span></div>
+        </div>
+
+        <div id="start-form" style="margin-top:18px;display:none">
+          <form id="fakeSignup" onsubmit="return false">
+            <label style="display:block;font-size:13px;color:var(--muted);margin-bottom:8px">Email</label>
+            <input type="email" id="email" required placeholder="you@egalik.uz" style="width:100%;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit;margin-bottom:10px">
+            <div style="display:flex;gap:8px">
+              <button class="btn btn-cta" type="submit" id="submit">Ro‘yxatdan o‘tish</button>
+              <button class="btn btn-ghost" id="cancel">Bekor qilish</button>
+            </div>
+            <p id="msg" style="margin-top:8px;color:var(--muted);font-size:13px"></p>
+          </form>
+        </div>
+
+      </section>
+
+      <aside class="device" aria-hidden>
+        <div class="top">
+          <div style="font-size:12px;color:var(--muted)">Egalik — Category</div>
+          <div style="display:flex;gap:8px"><div style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.06)"></div><div style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.04)"></div></div>
+        </div>
+        <div class="screen">
+
+          <div class="list-item">
+            <div class="dot">1</div>
+            <div class="meta"><b>Texnika</b><span>Texnika turkumidagi barcha e'lonlar</span></div>
+            <div style="font-size:13px;color:var(--muted)">7</div>
+          </div>
+
+          <div class="list-item">
+            <div class="dot">2</div>
+            <div class="meta"><b>Asbob uskunalar</b><span>Asbob uskunalar turkumidagi barcha e'lonlar</span></div>
+            <div style="font-size:13px;color:var(--muted)">0</div>
+          </div>
+
+          <div class="list-item">
+            <div class="dot">3</div>
+            <div class="meta"><b>Transport</b><span>Transport turkumidagi barcha e'lonlar</span></div>
+            <div style="font-size:13px;color:var(--muted)">0</div>
+          </div>
+
+          <div class="list-item">
+            <div class="dot">4</div>
+            <div class="meta"><b>Ko'chmas mulk</b><span>Ko'chmas mulk turkumidagi barcha e'lonlar</span></div>
+            <div style="font-size:13px;color:var(--muted)">0</div>
+          </div>
+
+          <div class="list-item">
+            <div class="dot">5</div>
+            <div class="meta"><b>Qishloq xo'jaligi</b><span>Qishloq xo'jaligi turkumidagi barcha e'lonlar</span></div>
+            <div style="font-size:13px;color:var(--muted)">0</div>
+          </div>
+
+          <div class="list-item">
+            <div class="dot">5</div>
+            <div class="meta"><b>Yer maydonlari</b><span>Yer maydonlari turkumidagi barcha e'lonlar</span></div>
+            <div style="font-size:13px;color:var(--muted)">0</div>
+          </div>
+
+        </div>
+      </aside>
+    </main>
+
+    <section id="features" class="features">
+      <div class="feature">
+        <h4>Oson onboarding</h4>
+        <p>1 daqiqa ichida hisob yarating. Minimal ma'lumot — maksimal tezlik.</p>
+      </div>
+      <div class="feature">
+        <h4>Avtomatlashtirilgan billing</h4>
+        <p>Ijara to‘lovlarini kuzatish va eslatmalar — qo‘l mehnatisiz.</p>
+      </div>
+      <div class="feature">
+        <h4>Markaziy dashboard</h4>
+        <p>Barcha mulk ma'lumotlari va reklama idarasi bitta oynada.</p>
+      </div>
+      <div class="feature">
+        <h4>Mobil uchun optimallashtirilgan</h4>
+        <p>Dashboard mobilda ham tez ishlaydi — yo‘lda ham boshqarish mumkin.</p>
+      </div>
+      <div class="feature">
+        <h4>API tayyor</h4>
+        <p>Backendingiz bilan ulash uchun yengil REST endpointlar.</p>
+      </div>
+      <div class="feature">
+        <h4>Xavfsizlik</h4>
+        <p>JWT autentifikatsiya va rolga asoslangan ruxsatlar.</p>
+      </div>
+    </section>
+
+    <footer>
+      <div>© <strong>Egalik</strong> 2026</div>
+      <div>Made with &nbsp;•&nbsp; Fast onboarding • Clean UI • Reliable</div>
+    </footer>
+
+  </div>
+
+  <script>
+    // Tiny interactive bits to make the page feel alive.
+    // document.getElementById('tour').addEventListener('click', ()=>{
+    //   alert('Qisqacha sayr: Dashboard → Hisobotlar → Sozlamalar — barcha asosiy sahifalar tayyor.');
+    // });
+
+    // const startBtn = document.getElementById('start');
+    // const formWrap = document.getElementById('start-form');
+    // const cancel = document.getElementById('cancel');
+    // const fakeSignup = document.getElementById('fakeSignup');
+    // const msg = document.getElementById('msg');
+
+    // startBtn.addEventListener('click', ()=>{
+    //   formWrap.style.display = formWrap.style.display === 'none' ? 'block' : 'none';
+    // });
+    // cancel.addEventListener('click', ()=>{formWrap.style.display='none'});
+
+    // fakeSignup.addEventListener('submit', ()=>{
+    //   const email = document.getElementById('email').value.trim();
+    //   if(!email){ msg.textContent='Iltimos, email kiriting.'; return; }
+    //   // fake success — store to localStorage for demo
+    //   const leads = JSON.parse(localStorage.getItem('egalik_leads')||'[]');
+    //   leads.push({email,at:new Date().toISOString()});
+    //   localStorage.setItem('egalik_leads', JSON.stringify(leads));
+    //   msg.textContent = 'Rahmat! Siz muvaffaqiyatli ro‘yxatdan o‘tdingiz. (Demo)';
+    //   document.getElementById('email').value='';
+    // });
+
+    // // Accessibility: allow Enter on focused buttons
+    // Array.from(document.querySelectorAll('button')).forEach(b=>{
+    //   b.addEventListener('keyup', (e)=>{ if(e.key === 'Enter') b.click(); });
+    // });
+  </script>
+</body>
+</html>
