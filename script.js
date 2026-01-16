@@ -402,7 +402,7 @@ document.addEventListener("click", async (e) => {
 
       // Tugmalarni boshqarish
       addBtn.style.display = "none";  // Yangi e’lon tugmasi yashirilsin
-      // editBtn.style.display = "inline-block"; // Yangilash tugmasi ko‘rsin
+      editBtn.style.display = "inline-block"; // Yangilash tugmasi ko‘rsin
 
     } catch (err) {
       console.error(err);
