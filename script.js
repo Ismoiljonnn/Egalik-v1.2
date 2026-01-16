@@ -134,23 +134,30 @@
         : `${BASE_URL}${item.rasm}`)
     : "images/noimage.jpg";
 
+function createAdCard(item, isMyAd = false) {
+  const btnClass = item.holat === "sotiladi" ? "green" : "blue";
+
+  const BASE_URL = "https://egalik-api-v01.onrender.com";
+
+  const imgSrc = item.rasm
+    ? (item.rasm.startsWith("http") ? item.rasm : `${BASE_URL}${item.rasm}`)
+    : "images/noimage.jpg";
+
   return `
-    <article class="ad-card">
-              <img src="${item.rasm}" alt="${item.title}">
-              <h3>${item.title}</h3>
-              <p>Tavsilot: ${item.tavsilot}</p>
-              <p>Narxi: ${item.narx} so'm</p>
-              <p>Telefon raqam: ${item.number}</p>
-              <p>Telegram: ${item.telegram}</p>
-              <div class="ad-actions">
-                <button class="badge ${btnClass}">
-                  ${item.holat}
-                </button>
-              </div>
-              <button class="delete-btn" data-id="${item.id}">
-                O‘chirish
-                </button>
-            </article>
+    <article class="ad-card" data-id="${item.id}">
+      <img src="${imgSrc}" alt="${item.title}">
+      <h3>${item.title}</h3>
+      <p>Tavsilot: ${item.tavsilot}</p>
+      <p>Narxi: ${item.narx} so'm</p>
+      <p>Telefon raqam: ${item.number}</p>
+      <p>Telegram: ${item.telegram}</p>
+      <div class="ad-actions">
+        <button class="badge ${btnClass}">${item.holat}</button>
+      </div>
+      ${isMyAd ? `
+          <button class="delete-btn" data-id="${item.id}">O‘chirish</button>
+        ` : ""}
+    </article>
   `;
 }
           const searchInput = document.getElementById("searchInput");
@@ -413,3 +420,4 @@ document.addEventListener("click", async (e) => {
     }
   }
 });
+
