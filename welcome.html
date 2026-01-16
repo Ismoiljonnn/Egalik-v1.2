@@ -67,6 +67,47 @@
     .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
     .btn-ghost a{background:transparent;color:var(--muted); text-decoration: none;}
 
+     .hero-card{
+      position: relative;
+      transition: transform 0.25s cubic-bezier(.22,.61,.36,1), box-shadow 0.25s ease;
+      will-change: transform;
+      overflow: hidden;
+    }
+
+    /* yorug‘lik aura */
+    .hero-card::before{
+      content:'';
+      position:absolute;
+      inset:0;
+      background: radial-gradient(
+        400px circle at var(--x,50%) var(--y,50%),
+        rgba(124,58,237,0.15),
+        transparent 40%
+      );
+      opacity:0;
+      transition:opacity 0.25s ease;
+      pointer-events:none;
+    }
+
+    .hero-card:hover::before{
+      opacity:1;
+    }
+
+    .hero-card:hover{
+      box-shadow:
+        0 20px 60px rgba(124,58,237,0.15),
+        0 8px 30px rgba(2,6,23,0.8);
+    }
+
+    .btn{
+      transition: transform .15s ease, box-shadow .15s ease;
+    }
+
+    .btn:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(124,58,237,0.25);
+    }
+
     /* Quick stats */
     .stats{display:flex;gap:12px;margin-top:22px}
     .stat{background:var(--card);padding:12px;border-radius:12px;min-width:110px}
@@ -284,6 +325,36 @@
     // // Accessibility: allow Enter on focused buttons
     // Array.from(document.querySelectorAll('button')).forEach(b=>{
     //   b.addEventListener('keyup', (e)=>{ if(e.key === 'Enter') b.click(); });
+
+    
+        const card = document.querySelector('.hero-card');
+
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      // yorug‘lik koordinatasi
+      card.style.setProperty('--x', `${x}px`);
+      card.style.setProperty('--y', `${y}px`);
+
+      // markazdan og‘ish
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+
+      const moveX = (x - centerX) / 18;
+      const moveY = (y - centerY) / 18;
+
+      card.style.transform = `
+        translate(${moveX}px, ${moveY}px)
+        rotateX(${ -moveY }deg)
+        rotateY(${ moveX }deg)
+      `;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'translate(0,0) rotateX(0) rotateY(0)';
+    });
     // });
   </script>
 </body>
