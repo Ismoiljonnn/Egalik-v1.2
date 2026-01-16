@@ -35,7 +35,7 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); /* har bir card 260px dan kichik bo‘lmaydi */
   gap: 16px;
-  padding-top: 50px;
+  padding-top: 60px;
   /* padding: 25px 12px 20px; */
 }
 
@@ -376,6 +376,7 @@ form button {
     grid-template-columns: 1fr;
   }
 }
+
 
 
 
