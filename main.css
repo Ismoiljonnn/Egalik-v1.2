@@ -133,7 +133,7 @@ background-color: #c0392b;
 /* Categories page */
 .categories {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* har qatorda maksimal 4 ta */
+  grid-template-columns: repeat(4, 1fr); /* Desktop: 4 ta kategoriya bir qatorda */
   gap: 14px;
   margin-top: 65px;
   padding: 10px;
@@ -145,24 +145,31 @@ background-color: #c0392b;
   text-align: center;
   border-radius: var(--radius);
   cursor: pointer;
-  transition: 0.15s;
+  transition: background 0.15s ease;
 }
-.category-card:hover { background: #222633; }
 
-/* Responsive: kichik ekranlarda 2-3 ta bo‘lsin */
-@media (max-width:1024px){
+.category-card:hover {
+  background: #222633;
+}
+
+/* --- Responsive --- */
+
+/* Planshetlar (1024px gacha) → 3 ta bir qatorda */
+@media (max-width:1024px) {
   .categories {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 
-@media (max-width:768px){
+/* Kichik planshet / katta telefonlar (768px gacha) → 2 ta bir qatorda */
+@media (max-width:768px) {
   .categories {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (max-width:480px){
+/* Mobil telefonlar (480px gacha) → 1 ta bir qatorda */
+@media (max-width:480px) {
   .categories {
     grid-template-columns: 1fr;
   }
@@ -369,3 +376,4 @@ form button {
     grid-template-columns: 1fr;
   }
 }
+
