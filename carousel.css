@@ -1,0 +1,152 @@
+:root{
+  --bg: #0f1116;
+  --sidebar: #151922;
+  --card: #1a1e27;
+  --text: #f1f5f9;
+  --muted: #9ca3af;
+  --radius: 12px;
+
+
+  --sidebar-width: 250px; /* chap sidebar kengligi */
+  --topbar-height: 70px; /* tepada qidiruv/topbar balandligi */
+  --carousel-height: 400px; /* foydalanuvchi so‘ragan balandlik */
+}
+
+/* Reset va body */
+*{box-sizing:border-box}
+  html,body{height:100%;margin:0}
+
+body{
+  font-family: Poppins, Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background:var(--bg);
+  color:var(--text);
+}
+
+/* Main content offset qilish */
+.main{
+  /* margin-left:var(--sidebar-width); */
+  margin-top:var(--topbar-height);
+  padding:18px;
+}
+
+/* --- Carousel container --- */
+.carousel-wrap{
+  width:calc(100% - 0px); /* main konteyner ichida full width bo‘ladi */
+  max-width:100%;
+  height:var(--carousel-height);
+  position:relative;
+  overflow:hidden;
+  border-radius:16px;
+  background: var(--sidebar); /* "siyoh" fon - rasm qo‘ymaguningcha ko‘rinadi */
+  margin-top: 60px;
+}
+
+
+.slides{
+  display:flex;
+  height:100%;
+  transition:transform 0.6s cubic-bezier(.22,.9,.27,1);
+  will-change:transform;
+}
+
+
+.slide{
+  min-width:100%;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  background:linear-gradient(180deg, rgba(0,0,0,0.6), rgba(0,0,0,0.2));
+}
+
+
+/* Rasm qo‘yiladigan joy (hozircha siyoh fon) */
+.slide .placeholder{
+  width:92%;
+  height:88%;
+  border-radius:12px;
+  /* background:linear-gradient(180deg,#050607,#0b0b0d); */
+  background-color: var(--card);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--muted);
+  font-size:18px;
+  letter-spacing:0.6px;
+  border:1px dashed rgba(255,255,255,0.04);
+  margin-bottom: 10px;
+}
+
+/* Agar real rasm qo‘yilsa, shu img foydalaniladi */
+.slide img{
+  max-width:100%;
+  max-height:100%;
+  object-fit:cover;
+  border-radius:12px;
+  display:block;
+}
+
+
+/* Arrow buttonlar */
+.arrow{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width:44px;height:44px;
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(0,0,0,0.4);
+  border:1px solid rgba(255,255,255,0.04);
+  backdrop-filter: blur(6px);
+  cursor:pointer;
+  z-index:60;
+  transition:transform 0.15s ease, background 0.15s ease;
+}
+.arrow:hover{transform:translateY(-50%) scale(1.05); background:rgba(255,255,255,0.06)}
+
+
+.arrow.left{left:14px}
+.arrow.right{right:14px}
+
+
+.arrow svg{width:18px;height:18px;fill:var(--text)}
+
+/* Dots (indikatorlar) */
+.dots{
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+  bottom:12px;
+  display:flex;
+  gap:8px;
+  z-index:70;
+}
+
+
+.dot{
+  width:10px;height:10px;
+  border-radius:50%;
+  background:var(--muted);
+  opacity:0.9;cursor:pointer;
+  transition:all .15s ease;
+  border:2px solid rgba(0,0,0,0.25);
+}
+.dot.active{
+  background:#fff; 
+  transform:scale(1.15);
+}
+
+
+/* kichik responsive tweaks */
+@media (max-width:900px){
+  :root{--sidebar-width:220px; --topbar-height:64px}
+  .arrow{width:40px;height:40px}
+}
+
+
+@media (max-width:640px){
+  /* mobilda sidebarni orqali ochish kutilyapti; shu payt carousel full screen */
+  .main{margin-left:0;margin-top:var(--topbar-height)}
+  .carousel-wrap{height:320px}
+}
