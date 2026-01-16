@@ -31,24 +31,28 @@ body{
 
 /* --- Carousel container --- */
 .carousel-wrap{
-  width:calc(100% - 0px); /* main konteyner ichida full width bo‘ladi */
+  width:100%;
   max-width:100%;
-  height:var(--carousel-height);
   position:relative;
   overflow:hidden;
   border-radius:16px;
-  background: var(--sidebar); /* "siyoh" fon - rasm qo‘ymaguningcha ko‘rinadi */
+  background: var(--sidebar);
   margin-top: 60px;
-}
 
+  /* Desktop: yarim balandlikli 16:9 */
+  padding-top: 28.125%; /* 56.25% ÷ 2 */
+}
 
 .slides{
   display:flex;
   height:100%;
+  width:100%;
+  position:absolute;
+  top:0;
+  left:0;
   transition:transform 0.6s cubic-bezier(.22,.9,.27,1);
   will-change:transform;
 }
-
 
 .slide{
   min-width:100%;
@@ -60,13 +64,10 @@ body{
   background:linear-gradient(180deg, rgba(0,0,0,0.6), rgba(0,0,0,0.2));
 }
 
-
-/* Rasm qo‘yiladigan joy (hozircha siyoh fon) */
 .slide .placeholder{
   width:92%;
   height:88%;
   border-radius:12px;
-  /* background:linear-gradient(180deg,#050607,#0b0b0d); */
   background-color: var(--card);
   display:flex;
   align-items:center;
@@ -78,7 +79,6 @@ body{
   margin-bottom: 10px;
 }
 
-/* Agar real rasm qo‘yilsa, shu img foydalaniladi */
 .slide img{
   max-width:100%;
   max-height:100%;
@@ -87,6 +87,13 @@ body{
   display:block;
 }
 
+/* --- Mobile: kichik ekranlar uchun 16:9 to‘liq --- */
+@media (max-width:640px){
+  .carousel-wrap{
+    padding-top: 56.25%; /* 16:9 nisbat */
+    margin-top: 70px;
+  }
+}
 
 /* Arrow buttonlar */
 .arrow{
@@ -135,18 +142,4 @@ body{
 .dot.active{
   background:#fff; 
   transform:scale(1.15);
-}
-
-
-/* kichik responsive tweaks */
-@media (max-width:900px){
-  :root{--sidebar-width:220px; --topbar-height:64px}
-  .arrow{width:40px;height:40px}
-}
-
-
-@media (max-width:640px){
-  /* mobilda sidebarni orqali ochish kutilyapti; shu payt carousel full screen */
-  .main{margin-left:0;margin-top:var(--topbar-height)}
-  .carousel-wrap{height:320px}
 }
