@@ -29,6 +29,56 @@ body {
   margin: 0;
 }
 
+/* ===== GLOBAL LOADER ===== */
+#global-loader {
+  position: fixed;
+  inset: 0;
+  background: #0b0f19;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+#global-loader.hide {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loader-box {
+  text-align: center;
+  color: #fff;
+  font-family: system-ui, sans-serif;
+}
+
+.loader-box h3 {
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.loader-box p {
+  margin-top: 8px;
+  font-size: 14px;
+  opacity: 0.75;
+}
+
+/* SPINNER */
+.spinner {
+  width: 54px;
+  height: 54px;
+  border: 5px solid rgba(255,255,255,0.15);
+  border-top: 5px solid #4f7cff;
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
 
 
 .ads-grid {
@@ -376,6 +426,7 @@ form button {
     grid-template-columns: 1fr;
   }
 }
+
 
 
 
