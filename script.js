@@ -1,4 +1,33 @@
         const API_BASE = "https://egalik-api-v01.onrender.com/";
+
+
+      const loader = document.getElementById("global-loader");
+      const loaderText = loader.querySelector("p");
+
+      // sahifa yuklanganda
+      window.addEventListener("load", async () => {
+
+          // 15 sekunddan keyin text o'zgaradi
+          const slowTextTimer = setTimeout(() => {
+              loaderText.innerText = "Server sekin javob bermoqda, iltimos kuting...";
+          }, 15000);
+
+          try {
+              await fetch(API_BASE + "health", {
+                  credentials: "include"
+              });
+          } catch (e) {
+              // jim, baribir loadingni yopamiz
+          } finally {
+              clearTimeout(slowTextTimer);
+
+              // minimal 1.2s ko‘rinib turadi (flicker bo‘lmasligi uchun)
+              setTimeout(() => {
+                  loader.classList.add("hide");
+              }, 1200);
+          }
+      });
+
         
 
         // Navbar switching
@@ -410,3 +439,4 @@ document.addEventListener("click", async (e) => {
     }
   }
 });
+
