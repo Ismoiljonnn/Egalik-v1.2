@@ -1,4 +1,4 @@
-      const API_BASE = "https://egalik-api-v01.onrender.com/";
+        const API_BASE = "https://egalik-api-v01.onrender.com/";
 
       const loader = document.getElementById("global-loader");
       const loaderText = loader.querySelector("p");
@@ -28,7 +28,6 @@
       });
 
 
-        
 
         // Navbar switching
         document.querySelectorAll(".sidebar nav a").forEach(link => {
@@ -46,7 +45,7 @@
         });
 
 
-          Load all products  
+          // Load all products  
           async function loadProducts() {
             try {
               const res = await fetch(API_BASE, { credentials: "include" });
@@ -61,6 +60,7 @@
             }
           }
 
+          
 
 
              // Load my ads (user's own products)
@@ -120,6 +120,8 @@
             </article>
           `;
         }
+
+
 
         // Initial load
         document.addEventListener("DOMContentLoaded", () => {
@@ -405,45 +407,3 @@ form.addEventListener("submit", async function (e) {
     alert("Serverga ulanishda xato");
   }
 });
-
-// EDIT tugmasi bosilganda
-document.addEventListener("click", async (e) => {
-  if (e.target.classList.contains("edit-btn")) {
-    const adCard = e.target.closest(".ad-card");
-    editId = adCard.dataset.id;
-    editMode = true;
-
-    try {
-      const res = await fetch(`${API_BASE}CRUD/${editId}/`, {
-        method: "GET",
-        credentials: "include",
-      });
-      if (!res.ok) throw new Error("Network response not ok");
-      const data = await res.json();
-
-      // Formani ochish va to'ldirish
-      addSection.style.display = "block";
-      form.elements["holat"].value = data.holat;
-      form.elements["title"].value = data.title;
-      form.elements["kategoriya"].value = data.kategoriya;
-      form.elements["tavsilot"].value = data.tavsilot;
-      form.elements["narx"].value = data.narx;
-      form.elements["number"].value = data.number;
-      form.elements["telegram"].value = data.telegram;
-
-      // Tugmalarni boshqarish
-      addBtn.style.display = "none";  // Yangi e’lon tugmasi yashirilsin
-      editBtn.style.display = "inline-block"; // Yangilash tugmasi ko‘rsin
-
-    } catch (err) {
-      console.error(err);
-      alert("E’lon ma’lumotlarini olishda xato");
-    }
-  }
-});
-
-
-
-
-
-
