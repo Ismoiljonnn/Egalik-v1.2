@@ -1,5 +1,4 @@
-        const API_BASE = "https://egalik-api-v01.onrender.com/";
-
+      const API_BASE = "https://egalik-api-v01.onrender.com/";
 
       const loader = document.getElementById("global-loader");
       const loaderText = loader.querySelector("p");
@@ -27,6 +26,7 @@
               }, 1200);
           }
       });
+
 
         
 
@@ -441,6 +441,7 @@ document.addEventListener("click", async (e) => {
     }
   }
 });
+
 
 
 
