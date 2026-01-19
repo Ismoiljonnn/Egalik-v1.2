@@ -47,19 +47,55 @@
 
 
           // Load all products  
-          async function loadProducts() {
-            try {
-              const res = await fetch(API_BASE, { credentials: "include" });
-              if (!res.ok) throw new Error("Network response not ok");
-              const data = await res.json();
+          // async function loadProducts() {
+          //   try {
+          //     const res = await fetch(API_BASE, { credentials: "include" });
+          //     if (!res.ok) throw new Error("Network response not ok");
+          //     const data = await res.json();
 
-              const grid = document.querySelector("#home .ads-grid");
-             grid.innerHTML = data.map(item => createAdCard(item, false)).join("");
+          //     const grid = document.querySelector("#home .ads-grid");
+          //    grid.innerHTML = data.map(item => createAdCard(item, false)).join("");
               
-            } catch(err) {
-              console.error("Fetch error:", err);
-            }
-          }
+          //   } catch(err) {
+          //     console.error("Fetch error:", err);
+          //   }
+          // }
+
+    function createAdCard(item) {
+  const btnClass =
+    item.holat === "sotiladi"
+      ? "green"
+      : item.holat === "ijaraga"
+      ? "blue"
+      : "blue";
+
+  // FAQAT http/https bo‘lsa rasm deb qabul qilamiz
+  const imgSrc =
+    item.rasm && item.rasm.startsWith("http")
+      ? item.rasm
+      : "/images/noimage.jpg";
+
+  return `
+    <article class="ad-card">
+      <img
+        src="${imgSrc}"
+        alt="${item.title || "E’lon rasmi"}"
+        onerror="this.onerror=null; this.src='/images/noimage.jpg';"
+      >
+      <h3>${item.title}</h3>
+      <p>Tavsilot: ${item.tavsilot}</p>
+      <p>Narxi: ${item.narx} so'm</p>
+      <p>Telefon raqam: ${item.number}</p>
+      <p>Telegram: ${item.telegram}</p>
+      <div class="ad-actions">
+        <button class="badge ${btnClass}">
+          ${item.holat}
+        </button>
+      </div>
+    </article>
+  `;
+}
+
 
              // Load my ads (user's own products)
           async function loadMyAds() {
@@ -439,5 +475,6 @@ document.addEventListener("click", async (e) => {
     }
   }
 });
+
 
 
