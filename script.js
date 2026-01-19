@@ -13,7 +13,7 @@
           }, 15000);
 
           try {
-              await fetch(API_BASE + "health", {
+              await fetch(API_BASE + "healthz", {
                   credentials: "include"
               });
           } catch (e) {
@@ -439,4 +439,5 @@ document.addEventListener("click", async (e) => {
     }
   }
 });
+
 
