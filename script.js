@@ -8,7 +8,7 @@
 
           // 15 sekunddan keyin text o'zgaradi
           const slowTextTimer = setTimeout(() => {
-              loaderText.innerText = "Server sekin javob bermoqda, iltimos kuting...";
+              loaderText.innerText = "Sahifa yuklanmoqda...";
           }, 15000);
 
           try {
@@ -407,3 +407,4 @@ form.addEventListener("submit", async function (e) {
     alert("Serverga ulanishda xato");
   }
 });
+
