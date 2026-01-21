@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="sidebar.css">
 <link rel="stylesheet" href="topbar.css">
 <link rel="stylesheet" href="carousel.css">
+<link rel="stylesheet" href="profile.css">
 </head>
 <body>
   
@@ -23,7 +24,7 @@
 
 <aside class="sidebar">
   <div class="logo">
-    <img src="Group 16.png" alt="Logo">
+    <img src="images/Group 16.png" alt="Logo">
     <div class="logo-text">EGALIK</div>
   </div>
   <nav>
@@ -31,7 +32,7 @@
       <div class="nav-item">
         <a data-page="home" class="active">
           <div>
-            <img src="Home menu.svg">
+            <img src="images/Home menu.svg">
             <p>Asosiy</p>
           </div>
         </a>
@@ -39,7 +40,7 @@
       <div class="nav-item">
         <a data-page="categories">
           <div>
-            <img src="Katalog.svg">
+            <img src="images/Katalog.svg">
             <p>Bo'limlar</p>
           </div>
         </a>
@@ -47,7 +48,7 @@
       <div class="nav-item">
         <a data-page="add">
           <div>
-            <img src="post.svg">
+            <img src="images/post.svg">
             <p>E’lon qo‘shish</p>
           </div>
         </a>
@@ -55,18 +56,21 @@
       <div class="nav-item">
         <a data-page="profile">
           <div>
-            <img src="Icon (1).svg">
+            <img src="images/Icon (1).svg">
             <p>Mening e’lonlarim</p>
+          </div>
+        </a>
+      </div>
+      <div class="nav-item">
+        <a data-page="profile-panel">
+          <div>
+            <img src="images/Profile.svg  ">
+            <p>Sozlamalar</p>
           </div>
         </a>
       </div>
     </div>
   </nav>
-  <div class="logout-btn-container">
-    <button id="logoutBtn" class="logoutBtn">
-      Chiqish
-    </button>
-  </div>
 </aside>
 
 <main class="content">
@@ -177,24 +181,53 @@
     </form>
 </section>
 
-    <!-- My ads -->
+
 <section id="profile" class="page" style="display:none">
     <header class="topbar">
       <input type="text" placeholder="Elonlaringizdan qidiring">
       <button type="submit" class="search-btn">Qidirish</button>
     </header>
     <div id="my-ads" class="ads-grid"></div>
+  </section>
+</div>
+
+<section id="profile-panel" class="page" style="display:none;">
+  <div class="profile-buttons">
+    <div class="profile-button">
+      <a data-tab="mode">
+        <div>
+          <img src="images/Ellipse 38.svg">
+          <p>Rejim</p>
+        </div>
+      </a>
+    </div>
+    <div class="profile-button" data-tab="language">
+      <a data-tab="language">
+        <div>
+          <img src="images/Vector.svg">
+          <p>Til</p>
+        </div>
+      </a>
+    </div>
+    <div class="profile-button logoutBtn" id="logoutBtn" data-tab="logout">
+      <a data-tab="logoutBtn">
+        <div class="logout-btn-container">
+          <img src="images/Icon (2).svg">
+          <p>Chiqish</p>
+        </div>
+      </a>
+    </div>
 </section>
-
-
 
 </main>
 
   <script src="script.js"></script>
   <script src="carousel.js"></script>
+  <script src="profile.js"></script>
 
 </body>
 </html>
+
 
 
 
