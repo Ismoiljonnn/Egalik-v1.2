@@ -295,116 +295,88 @@ document.addEventListener("click", async (e) => {
 });
 
 
-      let editMode = false; // false = yangi elon, true = tahrirlash
-let editId = null;    // tahrirlashdagi e’lon idsi
-
-document.getElementById("addForm").addEventListener("submit", async function(e) {
-  e.preventDefault();
-  const formData = new FormData(this);
-
-  try {
-    if (editMode && editId) {
-      // PUT request – tahrirlash
-      const res = await fetch(`${API_BASE}CRUD/${editId}/`, {
-        method: "PUT",
-        body: formData,
-        credentials: "include"
-      });
-
-      if (res.ok) {
-        alert("E’lon muvaffaqiyatli yangilandi!");
-        this.reset();
-        editMode = false;
-        editId = null;
-        document.getElementById("add").style.display = "none";
-        loadProducts();
-        loadMyAds();
-      } else {
-        const errText = await res.text();
-        alert("Xato: E’lon yangilanmadi\n" + errText);
-      }
-    } else {
-      // POST request – yangi elon
-      const res = await fetch(`${API_BASE}add/`, {
-        method: "POST",
-        body: formData,
-        credentials: "include"
-      });
-
-      if (res.ok) {
-        alert("E’lon muvaffaqiyatli qo‘shildi!");
-        this.reset();
-        loadProducts();
-        loadMyAds();
-      } else {
-        const errText = await res.text();
-        alert("Xato: E’lon qo‘shilmadi\n" + errText);
-      }
-    }
-  } catch (err) {
-    console.error(err);
-    alert("Serverga ulanishda xato");
-  }
-});
-
 
 const form = document.getElementById("addForm");
 const addSection = document.getElementById("add");
 const addBtn = form.querySelector("button[type='submit']");
-const editBtn = document.createElement("button"); // tahrirlash tugmasi
-editBtn.type = "submit";
-editBtn.textContent = "E’lonni yangilash";
-editBtn.style.display = "none"; // dastlab yashirin
-form.appendChild(editBtn);
 
-// FORM submit
-form.addEventListener("submit", async function (e) {
+// Xabar ko‘rsatish uchun div yaratish
+let msgDiv = document.createElement("div");
+msgDiv.style.marginTop = "10px";
+msgDiv.style.fontSize = "0.95rem";
+msgDiv.style.color = "var(--green)";
+form.appendChild(msgDiv);
+
+let canSubmit = true; // 30s blok flag
+
+// Agar eski listener bo‘lsa, uni olib tashlash
+form.replaceWith(form.cloneNode(true));
+const newForm = document.getElementById("addForm");
+const newAddBtn = newForm.querySelector("button[type='submit']");
+
+// Listener faqat bir marta ishlaydi
+newForm.addEventListener("submit", async function (e) {
   e.preventDefault();
-  const formData = new FormData(form);
+
+  if (!canSubmit) {
+    msgDiv.textContent = "Iltimos, 30 sekund kuting!";
+    msgDiv.style.color = "var(--orange)";
+    return;
+  }
+
+  const formData = new FormData(newForm);
 
   try {
-    if (editMode && editId) {
-      // PUT request tahrirlash uchun
-      const res = await fetch(`${API_BASE}CRUD/${editId}/`, {
-        method: "PUT",
-        body: formData,
-        credentials: "include",
-      });
-      if (res.ok) {
-        alert("E’lon muvaffaqiyatli yangilandi!");
-        editMode = false;
-        editId = null;
-        form.reset();
-        addBtn.style.display = "inline-block";
-        editBtn.style.display = "none";
-        addSection.style.display = "none";
-        loadProducts();
-        loadMyAds();
-      } else {
-        const errText = await res.text();
-        alert("Xato: E’lon yangilanmadi\n" + errText);
-      }
+    canSubmit = false;
+    newAddBtn.disabled = true;
+    msgDiv.textContent = "E’lon joylanmoqda...";
+    msgDiv.style.color = "var(--blue)";
+
+    const res = await fetch(`${API_BASE}add/`, {
+      method: "POST",
+      body: formData,
+      credentials: "include",
+    });
+
+    if (res.ok) {
+      msgDiv.textContent = "E’lon muvaffaqiyatli qo‘shildi!";
+      msgDiv.style.color = "var(--green)";
+      newForm.reset();
+      addSection.style.display = "none";
+      loadProducts();
+      loadMyAds();
+
+      // 30 sekund blok
+      let seconds = 30;
+      newAddBtn.textContent = `Kutish: ${seconds}s`;
+      const timer = setInterval(() => {
+        seconds--;
+        newAddBtn.textContent = `Kutish: ${seconds}s`;
+        if (seconds <= 0) {
+          clearInterval(timer);
+          newAddBtn.textContent = "E’lonni joylash";
+          canSubmit = true;
+          newAddBtn.disabled = false;
+          msgDiv.textContent = "";
+        }
+      }, 1000);
+
     } else {
-      // POST request yangi e’lon qo‘shish
-      const res = await fetch(`${API_BASE}add/`, {
-        method: "POST",
-        body: formData,
-        credentials: "include",
-      });
-      if (res.ok) {
-        alert("E’lon muvaffaqiyatli qo‘shildi!");
-        form.reset();
-        addSection.style.display = "none";
-        loadProducts();
-        loadMyAds();
-      } else {
-        const errText = await res.text();
-        alert("Xato: E’lon qo‘shilmadi\n" + errText);
-      }
+      const errText = await res.text();
+      msgDiv.textContent = "Xato: E’lon qo‘shilmadi!";
+      msgDiv.style.color = "var(--orange)";
+      console.error(errText);
+      canSubmit = true;
+      newAddBtn.disabled = false;
     }
+
   } catch (err) {
+    msgDiv.textContent = "Serverga ulanishda xato";
+    msgDiv.style.color = "var(--orange)";
     console.error(err);
-    alert("Serverga ulanishda xato");
+    canSubmit = true;
+    newAddBtn.disabled = false;
   }
 });
+
 
