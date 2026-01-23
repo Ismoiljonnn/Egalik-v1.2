@@ -43,8 +43,8 @@ prevBtn.addEventListener('click', ()=>{ prev(); restartAutoplay(); });
 
 
 // pause on hover
-carousel.addEventListener('mouseenter', ()=> stopAutoplay());
-carousel.addEventListener('mouseleave', ()=> startAutoplay());
+// carousel.addEventListener('mouseenter', ()=> stopAutoplay());
+// carousel.addEventListener('mouseleave', ()=> startAutoplay());
 
 
 function startAutoplay(){
@@ -60,16 +60,5 @@ function restartAutoplay(){ stopAutoplay(); startAutoplay(); }
 // init
 update();
 startAutoplay();
-
-
-// Helpful: if you want to replace placeholders with actual imgs dynamically
-// you can do: document.querySelectorAll('.slide .placeholder').forEach((ph, i)=>{ const img = document.createElement('img'); img.src = 'path/to/your/image'+(i+1)+'.jpg'; ph.replaceWith(img); });
-
-
-// const img = document.createElement('img');
-// img.src = 'path/to/image.jpg';
-// ph.replaceWith(img);
-
-
 
 })();
