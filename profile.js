@@ -36,16 +36,17 @@ async function logout() {
     }
 }
 
-// Register tugmasini ID orqali ushlab olamiz
+// Register tugmasini ushlab olamiz
 const registerBtn = document.getElementById("registerBtn");
 
 if (registerBtn) {
-    registerBtn.addEventListener("click", (e) => {
-        // Agar tugma ichida <a> tegi bo'lsa, uning standart ta'sirini to'xtatamiz
+    registerBtn.addEventListener("click", function(e) {
+        // Standart link harakatini to'xtatamiz (agar href bo'sh bo'lsa)
         e.preventDefault();
         
-        // Register sahifasiga o'tkazish
-        window.location.href = "register.html";
+        // Sahifani o'zgartirish
+        // Bu usul brauzer tarixida (history) iz qoldiradi, orqaga qaytish imkoni bo'ladi
+        window.location.assign("register.html");
     });
 }
 
