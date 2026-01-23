@@ -36,6 +36,19 @@ async function logout() {
     }
 }
 
+// Register tugmasini ID orqali ushlab olamiz
+const registerBtn = document.getElementById("registerBtn");
+
+if (registerBtn) {
+    registerBtn.addEventListener("click", (e) => {
+        // Agar tugma ichida <a> tegi bo'lsa, uning standart ta'sirini to'xtatamiz
+        e.preventDefault();
+        
+        // Register sahifasiga o'tkazish
+        window.location.href = "register.html";
+    });
+}
+
 
 // ===== THEME (SAFE MODE) =====
 // ===============================
