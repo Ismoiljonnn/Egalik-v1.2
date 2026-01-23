@@ -27,6 +27,44 @@
           }
       });
 
+   // Index.html sahifasi yuklanganda
+const savedName = localStorage.getItem("user_display_name");
+if (savedName) {
+    // Agar sahifangizda id="userName" degan joy bo'lsa, ismni chiqaradi
+    const nameBox = document.getElementById("userName");
+    if(nameBox) nameBox.textContent = savedName;
+}
+
+      
+      async function checkUserAuth() {
+    try {
+      // Serverdan foydalanuvchi ma'lumotlarini so'raymiz
+      const res = await fetch("https://egalik-api-v01.onrender.com/auth/user/", {
+        method: "GET",
+        credentials: "include", // Cookielarni yuborish uchun shart!
+      });
+
+      if (res.ok) {
+        const user = await res.json();
+        
+        // Sahifada foydalanuvchi ismini ko'rsatish (agar element bo'lsa)
+        const userEl = document.getElementById("username-display");
+        if (userEl) userEl.textContent = user.username;
+        
+        console.log("Foydalanuvchi tizimda:", user);
+      } else {
+        // Agar server "taniyman" demasa, login sahifasiga
+        window.location.href = "login.html";
+      }
+    } catch (err) {
+      console.error("Auth check xatosi:", err);
+      window.location.href = "login.html";
+    }
+  }
+
+  // Sahifa yuklanishi bilan ishga tushadi
+  checkUserAuth();
+
 
 
         // Navbar switching
@@ -378,5 +416,6 @@ newForm.addEventListener("submit", async function (e) {
     newAddBtn.disabled = false;
   }
 });
+
 
 
