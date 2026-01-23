@@ -1,5 +1,34 @@
     const API_BASE = "https://egalik-api-v01.onrender.com/";
 
+       // script.js ning boshiga qo'shing
+async function checkAuth() {
+    try {
+        const res = await fetch(API_BASE + "auth/user/", { // Serverda user ma'lumotlarini beruvchi endpoint
+            method: "GET",
+            credentials: "include"
+        });
+
+        if (!res.ok) {
+            // Agar foydalanuvchi login qilmagan bo'lsa (401 yoki 403)
+            window.location.href = "login.html";
+        } else {
+            console.log("Tizimga kirilgan ✅");
+            const userData = await res.json();
+            // Agar xohlasangiz, foydalanuvchi ismini ekranga chiqaring:
+            // document.getElementById("userName").innerText = userData.username;
+        }
+    } catch (err) {
+        console.error("Auth check xatosi:", err);
+        // Server bilan bog'lanish bo'lmasa, majburan loginga haydamaslik ma'qul (debug uchun)
+    }
+}
+
+      // Sahifa yuklanganda tekshiramiz
+      document.addEventListener("DOMContentLoaded", () => {
+          checkAuth(); // <-- MUHIM: Birinchi navbatda tekshiramiz
+          loadProducts();
+      });
+
       const loader = document.getElementById("global-loader");
       const loaderText = loader.querySelector("p");
 
@@ -378,3 +407,4 @@ newForm.addEventListener("submit", async function (e) {
     newAddBtn.disabled = false;
   }
 });
+
