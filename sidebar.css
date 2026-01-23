@@ -190,7 +190,7 @@
   }
 
   /* LOGO va LOGOUT yashirilsin */
-  .logo {
+  .logo, .logoutBtn, .logout-btn-container {
     display: none;
   }
 
@@ -199,5 +199,3 @@
     padding-bottom: 70px; /* pastdagi sidebar joyi */
   }
 }
-
-
