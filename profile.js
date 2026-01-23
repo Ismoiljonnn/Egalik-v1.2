@@ -1,55 +1,16 @@
-// API manzilingizni o'zgaruvchiga olib qo'yamiz (agar tepada bo'lmasa)
-const API_BASE = "https://egalik-api-v01.onrender.com/auth/";
-
-const logoutBtn = document.getElementById("logoutBtn");
-    if (logoutBtn) {
-        logoutBtn.addEventListener("click", (e) => {
-            e.preventDefault();
-            if(confirm("Tizimdan chiqmoqchimisiz?")) {
-                logout();
-            }
-        });
-    }
-
-async function logout() {
+logoutBtn.addEventListener("click", async (e) => {
+    e.preventDefault();
     try {
-        // 1. Serverga logout so'rovini yuboramiz (Cookie-ni o'chirishi uchun)
         await fetch(API_BASE + "logout/", {
             method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
             credentials: "include"
         });
-    } catch (e) {
-        console.warn("Server bilan aloqa uzilgan, lekin baribir tizimdan chiqaramiz.");
+    } catch (err) {
+        console.warn("Logout request failed (ignore 401)");
     } finally {
-        // 2. Brauzerdagi barcha ma'lumotlarni tozalash
-        // sessionStorage faqat bitta vkladka uchun, localStorage hamma vkladkalar uchun
-        sessionStorage.clear(); 
-        localStorage.clear(); 
-
-        // 3. Login sahifasiga yo'naltirish
-        window.location.replace("login.html"); 
-        // .replace ishlatish yaxshi, chunki foydalanuvchi "Back" tugmasini bossa, 
-        // yana index'ga qaytib qolmaydi.
+        window.location.href = "login.html"; // Har doim login sahifaga yo'naltirish
     }
-}
-
-// Register tugmasini ushlab olamiz
-const registerBtn = document.getElementById("registerBtn");
-
-if (registerBtn) {
-    registerBtn.addEventListener("click", function(e) {
-        // Standart link harakatini to'xtatamiz (agar href bo'sh bo'lsa)
-        e.preventDefault();
-        
-        // Sahifani o'zgartirish
-        // Bu usul brauzer tarixida (history) iz qoldiradi, orqaga qaytish imkoni bo'ladi
-        window.location.assign("register.html");
-    });
-}
-
+});
 
 // ===== THEME (SAFE MODE) =====
 // ===============================
