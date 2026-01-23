@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login</title>
-<link rel="icon" type="image/png" href="Group 16.png">
-<link rel="stylesheet" href="login.css">
-<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="icon" type="image/png" href="images/Group 16.png">
+    <link rel="stylesheet" href="login.css">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 </head>
 <body>
+
 <div class="wrapper">
-    <form id="loginForm" action="#">
+    <form id="loginForm">
         <h1>Kirish</h1>
 
         <div class="input-box">
@@ -23,11 +24,6 @@
             <i class='bx bx-lock'></i> 
         </div>
 
-        <!-- <div class="remember-forgot">
-            <label><input type="checkbox"> Remember me</label>
-            <a href="#">Forgot password?</a>
-        </div> -->
-
         <button id="loginBtn" type="submit" class="btn">Login</button>
 
         <div class="register-link">
@@ -37,48 +33,62 @@
 </div>
 
 <script>
-const form = document.getElementById("loginForm");
-const btn = document.getElementById("loginBtn");
-btn.disabled = true;
+    // 1. O'zgaruvchilarni aniqlash (Bular izohda bo'lmasligi kerak!)
+    const form = document.getElementById("loginForm");
+    const btn = document.getElementById("loginBtn");
 
-form.addEventListener("input", () => {
-    btn.disabled = !form.checkValidity();
-});
+    // Formni yuborish (Submit)
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
 
-form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+        // 2. Inputdan qiymatlarni olish
+        const usernameInput = form.elements["username"].value.trim();
+        const passwordInput = form.elements["password"].value;
 
-    const username = form.elements["username"].value;
-    const password = form.elements["password"].value;
+        // Tugmani vaqtinchalik o'chirish (ko'p marta bosmaslik uchun)
+        btn.disabled = true;
+        btn.textContent = "Kirilmoqda...";
 
-    try {
-                const res = await fetch("https://egalik-api-v01.onrender.com/auth/login/", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ username, password }),
-            credentials: "include"
-        });
+        try {
+            // 3. API so'rovi
+            const res = await fetch("https://egalik-api-v01.onrender.com/auth/login/", {
+                method: "POST",
+                headers: { 
+                    "Content-Type": "application/json" 
+                },
+                credentials: "include", // Cookie yuborish/qabul qilish uchun shart
+                body: JSON.stringify({ 
+                    username: usernameInput, 
+                    password: passwordInput 
+                }),
+            });
 
-        if(res.ok){
-            const data = await res.json();
-            alert(data.message); // Welcome username ✅
-            // Agar session cookie bo‘lishini xohlaysan, Django settingsda SESSION_COOKIE ni to‘g‘ri sozlash kerak
-            window.location.href = "index.html";
-        } else {
-            const err = await res.json().catch(() => null);
-            alert("Login xato: " + (err ? JSON.stringify(err) : "Server javobi xato"));
+            // 4. Javobni JSON formatda olish
+            const data = await res.json().catch(() => ({}));
+
+            if (res.ok) {
+                // Muvaffaqiyatli login
+                console.log("Login muvaffaqiyatli:", data);
+                
+                // Foydalanuvchi ismini index.html da ko'rsatish uchun saqlab qo'yamiz
+                localStorage.setItem("user_display_name", usernameInput);
+                
+                // Sahifani o'zgartirish
+                window.location.href = "index.html";
+            } else {
+                // Serverdan kelgan xatoni ko'rsatish
+                alert(data.detail || data.message || "Login yoki parol noto'g'ri!");
+                btn.disabled = false;
+                btn.textContent = "Login";
+            }
+        } catch (err) {
+            console.error("Xatolik yuz berdi:", err);
+            alert("Serverga bog'lanib bo'lmadi. Internetni tekshiring.");
+            btn.disabled = false;
+            btn.textContent = "Login";
         }
-    } catch(err){
-        console.error(err);
-        alert("Server bilan bog‘lanishda xato");
-    }
-});
-
-
+    });
 </script>
+
 </body>
 </html>
-
-
