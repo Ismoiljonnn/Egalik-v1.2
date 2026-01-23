@@ -1,4 +1,4 @@
-        const API_BASE = "https://egalik-api-v01.onrender.com/";
+    const API_BASE = "https://egalik-api-v01.onrender.com/";
 
       const loader = document.getElementById("global-loader");
       const loaderText = loader.querySelector("p");
@@ -8,7 +8,7 @@
 
           // 15 sekunddan keyin text o'zgaradi
           const slowTextTimer = setTimeout(() => {
-              loaderText.innerText = "Server sekin javob bermoqda, iltimos kuting...";
+              loaderText.innerText = "Sahifa yuklanmoqda...";
           }, 15000);
 
           try {
@@ -295,182 +295,6 @@ document.addEventListener("click", async (e) => {
 });
 
 
-// let editMode = false; // false = yangi elon, true = tahrirlash
-// let editId = null;    // tahrirlashdagi e’lon idsi
-
-// document.getElementById("addForm").addEventListener("submit", async function(e) {
-//   e.preventDefault();
-//   const formData = new FormData(this);
-
-//   try {
-//     if (editMode && editId) {
-//       // PUT request – tahrirlash
-//       const res = await fetch(`${API_BASE}CRUD/${editId}/`, {
-//         method: "PUT",
-//         body: formData,
-//         credentials: "include"
-//       });
-
-//       if (res.ok) {
-//         alert("E’lon muvaffaqiyatli yangilandi!");
-//         this.reset();
-//         editMode = false;
-//         editId = null;
-//         document.getElementById("add").style.display = "none";
-//         loadProducts();
-//         loadMyAds();
-//       } else {
-//         const errText = await res.text();
-//         alert("Xato: E’lon yangilanmadi\n" + errText);
-//       }
-//     } else {
-//       // POST request – yangi elon
-//       const res = await fetch(`${API_BASE}add/`, {
-//         method: "POST",
-//         body: formData,
-//         credentials: "include"
-//       });
-
-//       if (res.ok) {
-//         alert("E’lon muvaffaqiyatli qo‘shildi!");
-//         this.reset();
-//         loadProducts();
-//         loadMyAds();
-//       } else {
-//         const errText = await res.text();
-//         alert("Xato: E’lon qo‘shilmadi\n" + errText);
-//       }
-//     }
-//   } catch (err) {
-//     console.error(err);
-//     alert("Serverga ulanishda xato");
-//   }
-// });
-
-
-// const form = document.getElementById("addForm");
-// const addSection = document.getElementById("add");
-// const addBtn = form.querySelector("button[type='submit']");
-// const editBtn = document.createElement("button"); // tahrirlash tugmasi
-// editBtn.type = "submit";
-// editBtn.textContent = "E’lonni yangilash";
-// editBtn.style.display = "none"; // dastlab yashirin
-// form.appendChild(editBtn);
-
-// // FORM submit
-// form.addEventListener("submit", async function (e) {
-//   e.preventDefault();
-//   const formData = new FormData(form);
-
-//   try {
-//     if (editMode && editId) {
-//       // PUT request tahrirlash uchun
-//       const res = await fetch(`${API_BASE}CRUD/${editId}/`, {
-//         method: "PUT",
-//         body: formData,
-//         credentials: "include",
-//       });
-//       if (res.ok) {
-//         alert("E’lon muvaffaqiyatli yangilandi!");
-//         editMode = false;
-//         editId = null;
-//         form.reset();
-//         addBtn.style.display = "inline-block";
-//         editBtn.style.display = "none";
-//         addSection.style.display = "none";
-//         loadProducts();
-//         loadMyAds();
-//       } else {
-//         const errText = await res.text();
-//         alert("Xato: E’lon yangilanmadi\n" + errText);
-//       }
-//     } else {
-//       // POST request yangi e’lon qo‘shish
-//       const res = await fetch(`${API_BASE}add/`, {
-//         method: "POST",
-//         body: formData,
-//         credentials: "include",
-//       });
-//       if (res.ok) {
-//         alert("E’lon muvaffaqiyatli qo‘shildi!");
-//         form.reset();
-//         addSection.style.display = "none";
-//         loadProducts();
-//         loadMyAds();
-//       } else {
-//         const errText = await res.text();
-//         alert("Xato: E’lon qo‘shilmadi\n" + errText);
-//       }
-//     }
-//   } catch (err) {
-//     console.error(err);
-//     alert("Serverga ulanishda xato");
-//   }
-// });
-
-
-// const form = document.getElementById("addForm");
-// const addSection = document.getElementById("add");
-// const addBtn = form.querySelector("button[type='submit']");
-
-// let canSubmit = true; // 30s blok flag
-
-// form.addEventListener("submit", async function (e) {
-//   e.preventDefault();
-
-//   if (!canSubmit) {
-//     alert("Iltimos, 30 sekund kuting!");
-//     return;
-//   }
-
-//   const formData = new FormData(form);
-
-//   try {
-//     canSubmit = false;      // bloklash
-//     addBtn.disabled = true; // buttonni o‘chir
-
-//     // POST request yangi e’lon
-//     const res = await fetch(`${API_BASE}add/`, {
-//       method: "POST",
-//       body: formData,
-//       credentials: "include",
-//     });
-
-//     if (res.ok) {
-//       alert("E’lon muvaffaqiyatli qo‘shildi!");
-//       form.reset();
-//       addSection.style.display = "none";
-//       loadProducts();
-//       loadMyAds();
-
-//       // 30 sekund blok
-//       let seconds = 30;
-//       addBtn.textContent = `Kutish: ${seconds}s`;
-//       const timer = setInterval(() => {
-//         seconds--;
-//         addBtn.textContent = `Kutish: ${seconds}s`;
-//         if (seconds <= 0) {
-//           clearInterval(timer);
-//           addBtn.textContent = "E’lonni joylash";
-//           canSubmit = true;
-//           addBtn.disabled = false;
-//         }
-//       }, 1000);
-
-//     } else {
-//       const errText = await res.text();
-//       alert("Xato: E’lon qo‘shilmadi\n" + errText);
-//       canSubmit = true;
-//       addBtn.disabled = false;
-//     }
-
-//   } catch (err) {
-//     console.error(err);
-//     alert("Serverga ulanishda xato");
-//     canSubmit = true;
-//     addBtn.disabled = false;
-//   }
-// });
 
 const form = document.getElementById("addForm");
 const addSection = document.getElementById("add");
@@ -554,40 +378,3 @@ newForm.addEventListener("submit", async function (e) {
     newAddBtn.disabled = false;
   }
 });
-
-
-// // EDIT tugmasi bosilganda
-// document.addEventListener("click", async (e) => {
-//   if (e.target.classList.contains("edit-btn")) {
-//     const adCard = e.target.closest(".ad-card");
-//     editId = adCard.dataset.id;
-//     editMode = true;
-
-//     try {
-//       const res = await fetch(`${API_BASE}CRUD/${editId}/`, {
-//         method: "GET",
-//         credentials: "include",
-//       });
-//       if (!res.ok) throw new Error("Network response not ok");
-//       const data = await res.json();
-
-//       // Formani ochish va to'ldirish
-//       addSection.style.display = "block";
-//       form.elements["holat"].value = data.holat;
-//       form.elements["title"].value = data.title;
-//       form.elements["kategoriya"].value = data.kategoriya;
-//       form.elements["tavsilot"].value = data.tavsilot;
-//       form.elements["narx"].value = data.narx;
-//       form.elements["number"].value = data.number;
-//       form.elements["telegram"].value = data.telegram;
-
-//       // Tugmalarni boshqarish
-//       addBtn.style.display = "none";  // Yangi e’lon tugmasi yashirilsin
-//       editBtn.style.display = "inline-block"; // Yangilash tugmasi ko‘rsin
-
-//     } catch (err) {
-//       console.error(err);
-//       alert("E’lon ma’lumotlarini olishda xato");
-//     }
-//   }
-// });
